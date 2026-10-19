@@ -1,7 +1,9 @@
 import { Fragment, useEffect, useRef, type CSSProperties } from 'react'
+import { sections } from '../../data/sections'
+import { site } from '../../data/site'
 import styles from './Hero.module.css'
 
-const name = "Hi, I'm Aditya Sairam"
+const { greeting, photo } = site.hero
 
 function Hero() {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -81,17 +83,17 @@ function Hero() {
         <div className={styles.photoWrap}>
           <img
             className={styles.photo}
-            src="/images/aditya.png"
-            alt="Portrait of Aditya Sairam"
+            src={photo.src}
+            alt={photo.alt}
           />
         </div>
         <div className={styles.spotlight} />
         <div className={styles.grain} />
       </div>
 
-      <section id="home" className={styles.hero}>
-        <h1 className={styles.title} aria-label={name}>
-          {name.split(' ').map((word, w) => (
+      <section id={sections.home.id} className={styles.hero}>
+        <h1 className={styles.title} aria-label={greeting}>
+          {greeting.split(' ').map((word, w) => (
             <Fragment key={w}>
               {w > 0 && ' '}
               <span className={styles.word} aria-hidden="true">

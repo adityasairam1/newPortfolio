@@ -1,0 +1,25 @@
+/* Design settings used across the whole site.
+   Change a value here and every component that uses it updates. */
+
+:root {
+  /* colours */
+  --color-bg: #0d0d0d;                        /* page background */
+  --color-text: #f2f2f2;                      /* main text */
+  --color-text-strong: #ffffff;               /* highlighted text */
+  --color-text-soft: rgba(242, 242, 242, 0.75);  /* paragraphs */
+  --color-text-muted: rgba(242, 242, 242, 0.5);  /* nav links, footer */
+  --color-heart: #e25555;
+  --color-divider: rgba(242, 242, 242, 0.12);    /* thin lines between rows */
+  --gradient-silver: linear-gradient(180deg, #f1f4f8 0%, #b9c0c9 55%, #7d858f 100%);
+  --gradient-line: linear-gradient(90deg, #7d858f, #f1f4f8);
+
+  /* fonts */
+  --font-display: 'Unbounded', system-ui, sans-serif;  /* headings, nav */
+  --font-body: system-ui, sans-serif;                  /* paragraphs */
+
+  /* layout */
+  --nav-offset: 4rem;           /* side nav distance from the left edge */
+  --section-padding: 6rem 2rem 4rem 18rem;  /* top right bottom left (left leaves room for the nav) */
+  --section-padding-mobile: 4rem 1.25rem 6rem;
+  --content-width: 46rem;       /* max width of text blocks */
+}

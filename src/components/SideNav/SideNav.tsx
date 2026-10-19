@@ -1,15 +1,9 @@
 import { useEffect, useState } from 'react'
+import { navLinks } from '../../data/sections'
 import styles from './SideNav.module.css'
 
-const links = [
-  { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About Me' },
-  { id: 'work', label: 'My Work' },
-  { id: 'contact', label: 'Contact' },
-]
-
 function SideNav() {
-  const [active, setActive] = useState('home')
+  const [active, setActive] = useState(navLinks[0].id)
 
   // highlight the link of whichever section crosses the middle of the screen
   useEffect(() => {
@@ -22,7 +16,7 @@ function SideNav() {
       { rootMargin: '-50% 0px -50% 0px' },
     )
 
-    links.forEach(({ id }) => {
+    navLinks.forEach(({ id }) => {
       const section = document.getElementById(id)
       if (section) observer.observe(section)
     })
@@ -33,14 +27,21 @@ function SideNav() {
   return (
     <nav className={styles.nav} aria-label="Sections">
       <ul className={styles.list}>
-        {links.map(({ id, label }) => (
+        {navLinks.map(({ id, label }, index) => (
           <li key={id}>
             <a
               href={`#${id}`}
               className={`${styles.link} ${active === id ? styles.active : ''}`}
               aria-current={active === id ? 'true' : undefined}
+              aria-label={label}
             >
-              {label}
+              <span className={styles.number}>{String(index + 1).padStart(2, '0')}</span>
+              {/* two stacked copies of the label: hover rolls the second one up */}
+              <span className={styles.label}>
+                <span className={styles.labelInner} data-text={label}>
+                  {label}
+                </span>
+              </span>
             </a>
           </li>
         ))}

@@ -13,11 +13,11 @@
   margin: 0;
   font-size: 0.8rem;
   letter-spacing: 0.04em;
-  color: rgba(242, 242, 242, 0.6);
+  color: var(--color-text-muted);
 }
 
 .heart {
-  color: #e25555;
+  color: var(--color-heart);
 }
 
 /* phones: sit just above the bottom nav bar */

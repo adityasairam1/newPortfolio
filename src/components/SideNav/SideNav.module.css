@@ -1,6 +1,6 @@
 .nav {
   position: fixed;           /* stays put while the page scrolls */
-  left: 4rem;
+  left: var(--nav-offset);
   top: 50%;
   transform: translateY(-50%);  /* vertically centred */
   z-index: 10;               /* above every section */
@@ -12,43 +12,104 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.6rem;
 }
 
 .link {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  color: rgba(242, 242, 242, 0.55);
+  gap: 0.6rem;
+  color: var(--color-text-muted);
   text-decoration: none;
-  font-size: 0.8rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  transition: color 0.2s;
+  transition: color 0.3s, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* small line before each link; grows on the active one */
+/* line in front of the active link (hidden on the others) */
 .link::before {
   content: '';
-  width: 1.25rem;
-  height: 1px;
-  background: currentColor;
-  transition: width 0.2s;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-line);
+  transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+.number {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+/* window that shows one line of the label at a time */
+.label {
+  display: block;
+  height: 1.2em;
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+/* the label plus a bright copy underneath it */
+.labelInner {
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.labelInner::after {
+  content: attr(data-text);
+  display: block;
+  color: var(--color-text-strong);
+}
+
+/* hover: nudge right and roll the bright copy into view */
 .link:hover,
+.link:focus-visible {
+  color: var(--color-text);
+  transform: translateX(0.4rem);
+}
+
+.link:hover .labelInner,
+.link:focus-visible .labelInner {
+  transform: translateY(-50%);
+}
+
+/* section you're currently viewing: bright, glowing, with the line */
 .active {
-  color: #f2f2f2;
+  color: var(--color-text-strong);
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.35);
 }
 
 .active::before {
-  width: 2.5rem;
+  width: 1.5rem;
+}
+
+.active .number {
+  opacity: 1;
 }
 
 .link:focus-visible {
-  outline: 2px solid #f2f2f2;
-  outline-offset: 4px;
+  outline: 2px solid var(--color-text);
+  outline-offset: 6px;
+}
+
+/* users who prefer less motion: no rolling or sliding */
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .labelInner,
+  .link::before {
+    transition: color 0.2s;
+  }
+
+  .link:hover .labelInner,
+  .link:focus-visible .labelInner,
+  .link:hover,
+  .link:focus-visible {
+    transform: none;
+  }
 }
 
 /* phones: becomes a bar along the bottom of the screen */
@@ -71,9 +132,16 @@
   }
 
   .link {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.02em;
   }
 
+  .link:hover,
+  .link:focus-visible {
+    transform: none;
+  }
+
+  .number,
   .link::before {
     display: none;
   }
