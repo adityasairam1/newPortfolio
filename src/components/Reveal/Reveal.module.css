@@ -1,0 +1,26 @@
+/* hidden state: pushed down, shrunk, blurred */
+.reveal {
+  opacity: 0;
+  transform: translateY(4rem) scale(0.92);
+  filter: blur(8px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.8s ease;
+}
+
+/* in view: pops into place */
+.visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* users who prefer less motion: simple fade only */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transform: none;
+    filter: none;
+    transition: opacity 0.3s ease;
+  }
+}

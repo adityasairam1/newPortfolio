@@ -1,0 +1,20 @@
+.section {
+  position: relative;
+  z-index: 1;                /* above the fixed photo */
+  min-height: 80svh;         /* shorter than a screen so sections flow together */
+  padding: 6rem 2rem 4rem 15rem;  /* left space for the side nav */
+}
+
+.title {
+  margin: 0;
+  font-family: 'Unbounded', system-ui, sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+  .section {
+    padding: 4rem 1.25rem 6rem;  /* bottom space for the mobile nav bar */
+  }
+}

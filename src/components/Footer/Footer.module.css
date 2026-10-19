@@ -1,0 +1,30 @@
+.footer {
+  position: fixed;           /* always visible at the bottom of the screen */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;               /* above every section */
+  padding: 0.9rem 1rem;
+  text-align: center;
+  pointer-events: none;      /* never blocks clicks on content underneath */
+}
+
+.text {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: rgba(242, 242, 242, 0.6);
+}
+
+.heart {
+  color: #e25555;
+}
+
+/* phones: sit just above the bottom nav bar */
+@media (max-width: 700px) {
+  .footer {
+    bottom: 2.75rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9em;
+  }
+}
