@@ -1,0 +1,107 @@
+.card {
+  --rx: 0deg;                /* tilt, set from ProjectCard.tsx */
+  --ry: 0deg;
+  --gx: 50%;                 /* glare position */
+  --gy: 50%;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  /* 3D tilt toward the mouse */
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-out, border-color 0.3s;
+}
+
+.card:hover {
+  border-color: var(--color-divider-strong);
+}
+
+/* soft light that follows the mouse across the card */
+.glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;    /* match the card's rounded corners */
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--gx) var(--gy),
+    var(--color-glare),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover .glare {
+  opacity: 1;
+}
+
+/* content floats at different depths so the tilt feels 3D */
+.emoji {
+  font-size: 2.25rem;
+  line-height: 1;
+  transform: translateZ(40px);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-strong);
+  transform: translateZ(30px);
+}
+
+.description {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text-soft);
+  transform: translateZ(15px);
+}
+
+.tech {
+  list-style: none;
+  margin: auto 0 0;          /* pushes the tags to the bottom of the card */
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  transform: translateZ(20px);
+}
+
+.tag {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--color-divider);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.link {
+  align-self: flex-start;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateZ(20px);
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--color-text-strong);
+  text-decoration: underline;
+}
+
+/* users who prefer less motion: no tilt */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transform: none;
+  }
+}

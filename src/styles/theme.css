@@ -10,6 +10,9 @@
   --color-text-muted: rgba(242, 242, 242, 0.5);  /* nav links, footer */
   --color-heart: #e25555;
   --color-divider: rgba(242, 242, 242, 0.12);    /* thin lines between rows */
+  --color-divider-strong: rgba(242, 242, 242, 0.3);  /* card border on hover */
+  --color-surface: rgba(22, 22, 22, 0.6);       /* card background */
+  --color-glare: rgba(255, 255, 255, 0.12);     /* light reflection on cards */
   --gradient-silver: linear-gradient(180deg, #f1f4f8 0%, #b9c0c9 55%, #7d858f 100%);
   --gradient-line: linear-gradient(90deg, #7d858f, #f1f4f8);
 
@@ -22,4 +25,5 @@
   --section-padding: 6rem 2rem 4rem 18rem;  /* top right bottom left (left leaves room for the nav) */
   --section-padding-mobile: 4rem 1.25rem 6rem;
   --content-width: 46rem;       /* max width of text blocks */
+  --radius: 1rem;               /* rounded corners on cards */
 }
