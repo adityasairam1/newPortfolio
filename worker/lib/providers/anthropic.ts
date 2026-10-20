@@ -1,13 +1,15 @@
-// Claude (https://platform.claude.com) — needs the ANTHROPIC_API_KEY environment variable.
+// Claude (https://platform.claude.com) — needs the ANTHROPIC_API_KEY secret.
 
 import Anthropic from '@anthropic-ai/sdk'
 import { assistant } from '../../../src/data/assistant.js'
+import type { Env } from '../env.js'
 import type { ChatTurn } from './types.js'
 
 let client: Anthropic | undefined
 
-export async function* streamReply(system: string, messages: ChatTurn[]): AsyncGenerator<string> {
-  client ??= new Anthropic()  // reads ANTHROPIC_API_KEY
+export async function* streamReply(system: string, messages: ChatTurn[], env: Env): AsyncGenerator<string> {
+  if (!env.ANTHROPIC_API_KEY) throw new Error('Missing ANTHROPIC_API_KEY')
+  client ??= new Anthropic({ apiKey: env.ANTHROPIC_API_KEY })
 
   const reply = client.beta.messages.stream({
     model: assistant.models.anthropic,
@@ -33,7 +35,7 @@ export async function* streamReply(system: string, messages: ChatTurn[]): AsyncG
 }
 
 export function describeError(error: unknown): string {
-  if (error instanceof Anthropic.AuthenticationError) return 'Invalid or missing ANTHROPIC_API_KEY'
+  if (error instanceof Anthropic.AuthenticationError) return 'Invalid ANTHROPIC_API_KEY'
   if (error instanceof Anthropic.RateLimitError) return 'Rate limited by the Claude API'
   if (error instanceof Anthropic.APIError) return `Claude API error ${error.status}: ${error.message}`
   return error instanceof Error ? error.message : String(error)

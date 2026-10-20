@@ -1,15 +1,15 @@
 // POST /api/chat — answers visitor questions with AI and streams the reply.
-// Runs on the server (a Vercel function), so the API key never reaches the browser.
-// The AI provider is chosen in src/data/assistant.ts; it needs that provider's
-// key as an environment variable (GROQ_API_KEY or ANTHROPIC_API_KEY).
+// Runs on the server (a Cloudflare Worker), so the API key never reaches the browser.
+// The AI provider is chosen in src/data/assistant.ts.
 
 import { assistant } from '../src/data/assistant.js'
-import { provider, type ChatTurn } from './_lib/providers/index.js'
-import { isRateLimited } from './_lib/rateLimit.js'
-import { systemPrompt } from './_lib/systemPrompt.js'
+import type { Env } from './lib/env.js'
+import { provider, type ChatTurn } from './lib/providers/index.js'
+import { isRateLimited } from './lib/rateLimit.js'
+import { systemPrompt } from './lib/systemPrompt.js'
 
-export async function POST(request: Request): Promise<Response> {
-  const visitor = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+export async function handleChat(request: Request, env: Env): Promise<Response> {
+  const visitor = request.headers.get('CF-Connecting-IP') ?? 'unknown'
   const { requests, windowMinutes } = assistant.rateLimit
   if (isRateLimited(visitor, requests, windowMinutes * 60_000)) {
     return text(429, assistant.rateLimitMessage)
@@ -31,7 +31,7 @@ export async function POST(request: Request): Promise<Response> {
     async start(controller) {
       try {
         // forward the answer text as it's written
-        for await (const chunk of provider.streamReply(systemPrompt, messages)) {
+        for await (const chunk of provider.streamReply(systemPrompt, messages, env)) {
           controller.enqueue(encoder.encode(chunk))
         }
       } catch (error) {

@@ -58,17 +58,17 @@ This repository is my portfolio site, designed and built from scratch.
 - ♿ **Accessible by default:** keyboard support, WCAG AA contrast, and reduced-motion support
 - 📱 **Responsive** from phones to wide screens
 
-**Built with:** React, TypeScript, Vite, CSS Modules, Vercel Functions, and the Groq and Anthropic SDKs.
+**Built with:** React, TypeScript, Vite, CSS Modules, Cloudflare Workers, and the Groq and Anthropic SDKs.
 
 ### Run it locally
 
 ```bash
 npm install
-cp .env.example .env.local   # then add your GROQ_API_KEY
+cp .dev.vars.example .dev.vars   # then add your GROQ_API_KEY
 npm run dev
 ```
 
-Open http://localhost:5173.
+Open http://localhost:5173. The chat's Worker runs in Cloudflare's real runtime locally, via the Cloudflare Vite plugin.
 
 ### Where things live
 
@@ -76,7 +76,7 @@ Open http://localhost:5173.
 src/data/        all site content (text, projects, contact, AI settings)
 src/components/  one folder per component, each with its own styles
 src/styles/      theme tokens: colours, fonts, spacing, motion
-api/             serverless API behind the "Ask my AI" chat
+worker/          Cloudflare Worker behind the "Ask my AI" chat
 ```
 
 To update the site's content, edit the files in `src/data/`. No component code needs to change.

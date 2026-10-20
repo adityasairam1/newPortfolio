@@ -1,13 +1,15 @@
-// Groq (https://console.groq.com) — needs the GROQ_API_KEY environment variable.
+// Groq (https://console.groq.com) — needs the GROQ_API_KEY secret.
 
 import Groq from 'groq-sdk'
 import { assistant } from '../../../src/data/assistant.js'
+import type { Env } from '../env.js'
 import type { ChatTurn } from './types.js'
 
 let client: Groq | undefined
 
-export async function* streamReply(system: string, messages: ChatTurn[]): AsyncGenerator<string> {
-  client ??= new Groq()  // reads GROQ_API_KEY
+export async function* streamReply(system: string, messages: ChatTurn[], env: Env): AsyncGenerator<string> {
+  if (!env.GROQ_API_KEY) throw new Error('Missing GROQ_API_KEY')
+  client ??= new Groq({ apiKey: env.GROQ_API_KEY })
 
   const stream = await client.chat.completions.create({
     model: assistant.models.groq,
@@ -26,7 +28,7 @@ export async function* streamReply(system: string, messages: ChatTurn[]): AsyncG
 }
 
 export function describeError(error: unknown): string {
-  if (error instanceof Groq.AuthenticationError) return 'Invalid or missing GROQ_API_KEY'
+  if (error instanceof Groq.AuthenticationError) return 'Invalid GROQ_API_KEY'
   if (error instanceof Groq.RateLimitError) return 'Rate limited by the Groq API'
   if (error instanceof Groq.APIError) return `Groq API error ${error.status}: ${error.message}`
   return error instanceof Error ? error.message : String(error)

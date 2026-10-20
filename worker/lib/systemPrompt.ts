@@ -1,6 +1,5 @@
 // Builds the AI's instructions from the site's content files, so the chat
-// always knows exactly what the site says. (Folders starting with "_" are
-// not turned into API routes by Vercel.)
+// always knows exactly what the site says.
 
 import { about } from '../../src/data/about.js'
 import { assistant } from '../../src/data/assistant.js'

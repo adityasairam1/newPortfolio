@@ -33,9 +33,9 @@ export const assistant = {
   // 'Open to remote and hybrid roles', 'Work authorization: <status>'.
   extraFacts: [] as string[],
 
-  // ── model settings (used by api/chat.ts on the server) ──
+  // ── model settings (used by worker/chat.ts on the server) ──
   endpoint: '/api/chat',
-  // Which AI answers. Each needs its own key in .env.local (and on Vercel):
+  // Which AI answers. Each needs its own key in .dev.vars (and on Cloudflare):
   //   'groq'      → GROQ_API_KEY
   //   'anthropic' → ANTHROPIC_API_KEY
   provider: 'groq' as Provider,
