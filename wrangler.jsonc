@@ -15,6 +15,12 @@
     "run_worker_first": ["/api/*"]
   },
 
+  // your domain: Cloudflare creates the DNS records and HTTPS certificate automatically
+  "routes": [
+    { "pattern": "adityasairam.com", "custom_domain": true },
+    { "pattern": "www.adityasairam.com", "custom_domain": true }
+  ],
+
   // keep request logs in the Cloudflare dashboard (Worker → Observability)
   "observability": {
     "enabled": true
