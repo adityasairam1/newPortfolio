@@ -5,11 +5,6 @@
 
 export const contact = [
   {
-    label: 'Phone',
-    value: '+1 (216) 413-2548',
-    href: 'tel:+12164132548',
-  },
-  {
     label: 'Email',
     value: 'adityasairamp@outlook.com',
     href: 'mailto:adityasairamp@outlook.com',

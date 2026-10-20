@@ -4,16 +4,19 @@
   right: 0;
   bottom: 0;
   z-index: 10;               /* above every section */
-  padding: 0.9rem 1rem;
+  padding: var(--space-lg) var(--space-sm) 0.9rem;
   text-align: center;
   pointer-events: none;      /* never blocks clicks on content underneath */
+  /* dark fade behind the text so scrolling content never collides with it */
+  background: linear-gradient(0deg, var(--color-bg) 35%, transparent);
 }
 
 .text {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.04em;
   color: var(--color-text-muted);
+  text-wrap: balance;
 }
 
 .heart {
@@ -23,8 +26,11 @@
 /* phones: sit just above the bottom nav bar */
 @media (max-width: 700px) {
   .footer {
-    bottom: 2.75rem;
-    padding: 0.5rem 1rem;
-    font-size: 0.9em;
+    bottom: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom));
+    padding: var(--space-md) var(--space-sm) var(--space-xs);
+  }
+
+  .text {
+    font-size: 0.75rem;
   }
 }

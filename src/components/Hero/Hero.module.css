@@ -19,6 +19,18 @@
   );
 }
 
+/* darkens the backdrop as you scroll, so text in the sections below
+   always has strong contrast against the photo */
+.backdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: var(--color-bg);
+  opacity: calc(var(--scroll) * 0.6);
+  pointer-events: none;
+}
+
 /* fades the bottom of the backdrop into black */
 .backdrop::after {
   content: '';
@@ -35,7 +47,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  animation: photoIn 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: photoIn 1.6s var(--ease-out) both;
 }
 
 @keyframes photoIn {
@@ -147,7 +159,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: letterIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: letterIn 0.9s var(--ease-out) both;
   animation-delay: calc(var(--i) * 45ms + 300ms);
 }
 

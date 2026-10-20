@@ -2,28 +2,79 @@
    Change a value here and every component that uses it updates. */
 
 :root {
-  /* colours */
-  --color-bg: #0d0d0d;                        /* page background */
-  --color-text: #f2f2f2;                      /* main text */
-  --color-text-strong: #ffffff;               /* highlighted text */
-  --color-text-soft: rgba(242, 242, 242, 0.75);  /* paragraphs */
-  --color-text-muted: rgba(242, 242, 242, 0.5);  /* nav links, footer */
+  /* ── colours ── (contrast ratios measured against the dark backdrop) */
+  --color-bg: #0d0d0d;                           /* page background */
+  --color-text: #f2f2f2;                         /* main text */
+  --color-text-strong: #fafafa;                  /* highlighted text */
+  --color-text-soft: rgba(242, 242, 242, 0.78);  /* paragraphs — about 7:1 */
+  --color-text-muted: rgba(242, 242, 242, 0.64); /* labels, nav, tags — 4.5:1 or more (WCAG AA) */
   --color-heart: #e25555;
   --color-divider: rgba(242, 242, 242, 0.12);    /* thin lines between rows */
-  --color-divider-strong: rgba(242, 242, 242, 0.3);  /* card border on hover */
-  --color-surface: rgba(22, 22, 22, 0.6);       /* card background */
-  --color-glare: rgba(255, 255, 255, 0.12);     /* light reflection on cards */
+  --color-divider-strong: rgba(242, 242, 242, 0.32);  /* borders on hover */
+  --color-surface: rgba(24, 24, 24, 0.72);       /* card background */
+  --color-surface-hover: rgba(32, 32, 32, 0.82); /* card background on hover */
+  --color-tag: rgba(242, 242, 242, 0.04);        /* tag background */
+  --color-glare: rgba(255, 255, 255, 0.1);       /* light reflection on cards */
+  --color-glow: rgba(255, 255, 255, 0.35);       /* glow around the active nav link */
+  --color-nav-bar: rgba(13, 13, 13, 0.88);       /* mobile bottom nav background */
+  --color-focus: #f2f2f2;                        /* keyboard focus outline */
+  --color-selection: rgba(242, 242, 242, 0.25);  /* highlighted (selected) text */
   --gradient-silver: linear-gradient(180deg, #f1f4f8 0%, #b9c0c9 55%, #7d858f 100%);
   --gradient-line: linear-gradient(90deg, #7d858f, #f1f4f8);
 
-  /* fonts */
+  /* ── depth: soft shadows with a 1px top highlight ── */
+  --shadow-1:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --shadow-2:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 24px 48px -16px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(242, 242, 242, 0.06);
+
+  /* ── fonts ── */
   --font-display: 'Unbounded', system-ui, sans-serif;  /* headings, nav */
   --font-body: system-ui, sans-serif;                  /* paragraphs */
 
-  /* layout */
+  /* ── type scale ── */
+  --text-xs: 0.8125rem;                        /* 13px — labels, tags, footer */
+  --text-sm: 0.9375rem;                        /* 15px — card text */
+  --text-base: 1.0625rem;                      /* 17px — paragraphs */
+  --text-lg: 1.25rem;                          /* card titles */
+  --text-xl: clamp(1.25rem, 2.2vw, 1.75rem);   /* intro lines */
+  --text-2xl: clamp(2.25rem, 5vw, 4rem);       /* section headings */
+  --leading-body: 1.75;                        /* line height for paragraphs */
+  --tracking-label: 0.14em;                    /* letter spacing on small uppercase text */
+  --measure: 65ch;                             /* max line length for paragraphs (≈ 65–75 characters) */
+
+  /* ── spacing ── */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+  /* ── motion ── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);  /* fast start, gentle stop */
+  --ease-in-out: cubic-bezier(0.7, 0, 0.2, 1);
+  --duration-fast: 0.2s;
+  --duration: 0.35s;
+  --duration-slow: 0.7s;
+
+  /* ── layout ── */
   --nav-offset: 4rem;           /* side nav distance from the left edge */
-  --section-padding: 6rem 2rem 4rem 18rem;  /* top right bottom left (left leaves room for the nav) */
-  --section-padding-mobile: 4rem 1.25rem 6rem;
+  --section-padding: 6rem 2rem 5rem 18rem;  /* top right bottom left (left leaves room for the nav) */
+  --section-padding-mobile: 4rem 1.25rem 8rem;  /* bottom leaves room for the nav bar + footer */
   --content-width: 46rem;       /* max width of text blocks */
   --radius: 1rem;               /* rounded corners on cards */
+  --touch-target: 2.75rem;      /* 44px — minimum tap size */
+  --mobile-nav-height: 3.25rem;
+}
+
+/* tablets: pull the nav closer to the edge so content gets more room */
+@media (max-width: 1024px) {
+  :root {
+    --nav-offset: 2rem;
+    --section-padding: 5rem 2rem 5rem 15rem;
+  }
 }

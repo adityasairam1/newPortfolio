@@ -1,26 +1,23 @@
-/* hidden state: pushed down, shrunk, blurred */
+/* hidden state: slightly lower and smaller.
+   Only opacity + transform animate — both are GPU-friendly, so it stays smooth */
 .reveal {
   opacity: 0;
-  transform: translateY(4rem) scale(0.92);
-  filter: blur(8px);
+  transform: translateY(2rem) scale(0.97);
   transition:
-    opacity 0.8s ease,
-    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
-    filter 0.8s ease;
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
 }
 
-/* in view: pops into place */
+/* in view: settles into place */
 .visible {
   opacity: 1;
   transform: none;
-  filter: none;
 }
 
 /* users who prefer less motion: simple fade only */
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     transform: none;
-    filter: none;
     transition: opacity 0.3s ease;
   }
 }

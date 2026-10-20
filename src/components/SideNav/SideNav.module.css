@@ -12,13 +12,14 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: var(--space-sm);
 }
 
 .link {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  padding: 0.3rem 0;         /* bigger click area without changing the look */
   color: var(--color-text-muted);
   text-decoration: none;
   font-family: var(--font-display);
@@ -26,7 +27,9 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  transition: color 0.3s, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition:
+    color var(--duration) var(--ease-out),
+    transform var(--duration) var(--ease-out);
 }
 
 /* line in front of the active link (hidden on the others) */
@@ -35,14 +38,13 @@
   width: 0;
   height: 2px;
   background: var(--gradient-line);
-  transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: width var(--duration-slow) var(--ease-out);
 }
 
 .number {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
-  opacity: 0.7;
+  letter-spacing: var(--tracking-label);
 }
 
 /* window that shows one line of the label at a time */
@@ -56,7 +58,7 @@
 /* the label plus a bright copy underneath it */
 .labelInner {
   display: block;
-  transition: transform 0.45s cubic-bezier(0.7, 0, 0.2, 1);
+  transition: transform 0.45s var(--ease-in-out);
 }
 
 .labelInner::after {
@@ -80,20 +82,11 @@
 /* section you're currently viewing: bright, glowing, with the line */
 .active {
   color: var(--color-text-strong);
-  text-shadow: 0 0 18px rgba(255, 255, 255, 0.35);
+  text-shadow: 0 0 18px var(--color-glow);
 }
 
 .active::before {
   width: 1.5rem;
-}
-
-.active .number {
-  opacity: 1;
-}
-
-.link:focus-visible {
-  outline: 2px solid var(--color-text);
-  outline-offset: 6px;
 }
 
 /* users who prefer less motion: no rolling or sliding */
@@ -101,7 +94,7 @@
   .link,
   .labelInner,
   .link::before {
-    transition: color 0.2s;
+    transition: color var(--duration-fast);
   }
 
   .link:hover .labelInner,
@@ -120,20 +113,24 @@
     top: auto;
     bottom: 0;
     transform: none;
-    padding: 0.75rem 1rem;
-    background: rgba(13, 13, 13, 0.85);
+    padding: var(--space-2xs) var(--space-xs) calc(var(--space-2xs) + env(safe-area-inset-bottom));
+    background: var(--color-nav-bar);
     backdrop-filter: blur(8px);
+    border-top: 1px solid var(--color-divider);
   }
 
   .list {
     flex-direction: row;
     justify-content: space-around;
-    gap: 0.5rem;
+    gap: var(--space-2xs);
   }
 
   .link {
-    font-size: 0.65rem;
-    letter-spacing: 0.02em;
+    justify-content: center;
+    min-height: var(--touch-target);  /* 44px tap target */
+    padding: 0 var(--space-xs);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
   }
 
   .link:hover,
