@@ -1,32 +1,86 @@
-# React + TypeScript + Vite
+# Hi, I'm Aditya Sairam 👋
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+**Software Engineer · Backend, Data & AI Platforms**
 
-Currently, two official plugins are available:
+I build backend systems, data pipelines, and AI tools that hold up in production.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[LinkedIn](https://www.linkedin.com/in/adityasairam) · [GitHub](https://github.com/adityasairam1) · [Email](mailto:adityasairamp@outlook.com) · Open to relocation
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## About me
 
-## Expanding the Oxlint configuration
+I've spent 5+ years building the stuff behind the screen 🛠️: APIs, microservices, data pipelines, and lately AI agents that take boring manual work off people's plates. I've worked on systems handling millions of records at **Amazon**, **United Health Care**, and in enterprise lending. Honestly, debugging is my happy place 🐛🔍.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+Outside work I'm gaming 🎮 (GTA 5, wrestling games, Tomb Raider, Assassin's Creed, Max Payne) or building websites from scratch, like this one 🚀.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+I'm looking for a team where I can keep learning, ship things I'm proud of, and grow with good people 🤝.
+
+## Highlights
+
+- ⚡ **40% faster APIs** at Amazon, by profiling under production load and optimizing DynamoDB access and JVM memory
+- 🤖 **~40% less manual work** in loan servicing with multi-agent AI workflows
+- ✅ **~25% fewer downstream data issues** across millions of catalog records
+- 🚀 **~30% faster releases** with CI/CD for containerized services on Kubernetes
+
+## Tech I work with
+
+| Area | Tools |
+| --- | --- |
+| **Languages** | Python, Java, SQL, TypeScript, C# |
+| **Backend** | FastAPI, Spring Boot, .NET, REST APIs, microservices |
+| **Data** | Kafka, ETL pipelines, BigQuery, Pandas, Hadoop, Hive |
+| **Databases** | DynamoDB, SQL Server, PostgreSQL, MongoDB, Elasticsearch |
+| **AI / LLM** | Claude, Gemini, Azure OpenAI, RAG, multi-agent orchestration |
+| **Cloud & DevOps** | Docker, Kubernetes, GitHub Actions, AWS, GCP |
+
+## Featured projects
+
+| Project | What it does | Built with |
+| --- | --- | --- |
+| 🤖 **AI Loan Assistant** | Multi-agent system that reads loan documents and handles servicing tasks, cutting ~40% of manual work | Python, FastAPI, Kafka, RAG, Kubernetes, React |
+| 🩺 **Medline Search Engine** | Search over ~4,500 medical articles with a 1.4M-entry inverted index, from 1+ hour per query down to near-instant | Node.js, MongoDB, MySQL, Next.js, NLP |
+| 📜 **Presidential Speech Search** | Search engine built from scratch over every State of the Union address, with TF-IDF ranking | Python, NLTK, SQL Server |
+| 🍔 **Yelp Review Analytics API** | API over 150K businesses and ~7M reviews, with results as JSON or CSV | Python, Flask, MongoDB |
+| ⚡ **Amazon Catalog Speedup** | Made multi-region catalog APIs 40% faster and cut data issues by ~25% | Java, Spring Boot, DynamoDB, CloudWatch |
+
+---
+
+## About this website
+
+This repository is my portfolio site, designed and built from scratch.
+
+**What's inside**
+
+- 🎬 **Animated home page:** letter-by-letter intro, a studio spotlight that follows the mouse, film grain, and a photo that blurs as you scroll
+- 🃏 **3D project cards** that tilt toward the cursor
+- ✦ **Ask my AI:** a chat assistant that answers visitors' questions about my work, streaming replies from an LLM through a serverless API
+- ♿ **Accessible by default:** keyboard support, WCAG AA contrast, and reduced-motion support
+- 📱 **Responsive** from phones to wide screens
+
+**Built with:** React, TypeScript, Vite, CSS Modules, Vercel Functions, and the Groq and Anthropic SDKs.
+
+### Run it locally
+
+```bash
+npm install
+cp .env.example .env.local   # then add your GROQ_API_KEY
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Open http://localhost:5173.
+
+### Where things live
+
+```
+src/data/        all site content (text, projects, contact, AI settings)
+src/components/  one folder per component, each with its own styles
+src/styles/      theme tokens: colours, fonts, spacing, motion
+api/             serverless API behind the "Ask my AI" chat
+```
+
+To update the site's content, edit the files in `src/data/`. No component code needs to change.
+
+---
+
+<p align="center">Made with ♥ and lots of tea</p>
