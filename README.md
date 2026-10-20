@@ -4,6 +4,8 @@
 
 I build backend systems, data pipelines, and AI tools that hold up in production.
 
+🌐 **Portfolio:** [adityasairam.com](https://adityasairam.com)
+
 [LinkedIn](https://www.linkedin.com/in/adityasairam) · [GitHub](https://github.com/adityasairam1) · [Email](mailto:adityasairamp@outlook.com) · Open to relocation
 
 ---
@@ -48,7 +50,7 @@ I'm looking for a team where I can keep learning, ship things I'm proud of, and 
 
 ## About this website
 
-This repository is my portfolio site, designed and built from scratch.
+This repository is my portfolio site, designed and built from scratch. It's live at **[adityasairam.com](https://adityasairam.com)**.
 
 **What's inside**
 
