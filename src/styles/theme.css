@@ -15,6 +15,9 @@
   --color-surface-hover: rgba(32, 32, 32, 0.82); /* card background on hover */
   --color-tag: rgba(242, 242, 242, 0.04);        /* tag background */
   --color-glare: rgba(255, 255, 255, 0.1);       /* light reflection on cards */
+  --color-panel: rgba(18, 18, 18, 0.92);         /* chat panel and its button */
+  --color-bubble-ai: rgba(242, 242, 242, 0.06);  /* AI chat bubbles, chat input */
+  --color-bubble-user: #f2f2f2;                  /* visitor chat bubbles (dark text on top) */
   --color-glow: rgba(255, 255, 255, 0.35);       /* glow around the active nav link */
   --color-nav-bar: rgba(13, 13, 13, 0.88);       /* mobile bottom nav background */
   --color-focus: #f2f2f2;                        /* keyboard focus outline */
@@ -67,6 +70,7 @@
   --section-padding-mobile: 4rem 1.25rem 8rem;  /* bottom leaves room for the nav bar + footer */
   --content-width: 46rem;       /* max width of text blocks */
   --radius: 1rem;               /* rounded corners on cards */
+  --radius-lg: 1.25rem;         /* rounded corners on the chat panel */
   --touch-target: 2.75rem;      /* 44px — minimum tap size */
   --mobile-nav-height: 3.25rem;
 }
