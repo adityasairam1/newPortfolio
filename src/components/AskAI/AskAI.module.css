@@ -172,6 +172,7 @@
 .log {
   flex: 1;
   overflow-y: auto;
+  overscroll-behavior: contain;  /* reaching the end of the chat doesn't scroll the page behind */
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -348,6 +349,11 @@
 
 /* phones: sit above the bottom nav bar and footer, panel uses the full width */
 @media (max-width: 700px) {
+  /* the panel covers most of the screen, so freeze the page behind it while it's open */
+  :global(html):has(.panel.open) {
+    overflow: hidden;
+  }
+
   .launcher {
     right: 0.75rem;
     bottom: calc(var(--mobile-nav-height) + 2.75rem + env(safe-area-inset-bottom));
